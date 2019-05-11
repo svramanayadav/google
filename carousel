@@ -1,0 +1,49 @@
+public static final class Slide {
+        private final Page page;
+        private String img = "";
+        private String title = "";
+        private String name = "";
+        private String desc = "";
+        private String path = "";
+
+        private Slide(Page page) {
+            this.page = page;
+            title = page.getTitle();
+            desc = page.getDescription();
+            if (desc == null) {
+                desc = "";
+            }
+            path = page.getPath();
+            // currently we just check if "image" resource is present
+            Resource r = page.getContentResource("image");
+            if (r != null) {
+                Image image = new Image(r);
+                img = page.getPath() + ".img.png" + image.getSuffix();
+            }
+            name = page.getName();
+        }
+
+        public Page getPage() {
+            return page;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public String getPath() {
+            return path;
+        }
+    }
